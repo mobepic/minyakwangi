@@ -1,0 +1,2945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>BLEU DE CHANEL — The Essence of Unbound Freedom</title>
+  <meta name="description" content="Experience BLEU DE CHANEL through an interactive scroll-driven deconstruction. Discover the olfactive craftsmanship, architectural bottle design, and timeless fragrance variations.">
+  
+  <!-- Google Fonts: Luxury High-Contrast Serif & Clean Modern Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lenis for smooth luxury inertia scrolling -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       1. CSS RESET & DESIGN SYSTEM TOKENS
+       ========================================================================== */
+    :root {
+      --bg-dark: #050811;
+      --bg-midnight: #0A0F1D;
+      --bg-card: rgba(14, 21, 38, 0.7);
+      --bg-card-hover: rgba(22, 33, 60, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-light: rgba(96, 165, 250, 0.25);
+      --accent-blue: #60A5FA;
+      --accent-blue-deep: #1E3A8A;
+      --accent-glow: #38BDF8;
+      --accent-amber: #F59E0B;
+      --accent-gold: #D97706;
+      --text-pearl: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --font-serif: 'Cinzel', serif;
+      --font-editorial: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* CRITICAL FIX: Do NOT use overflow-x: hidden on html/body as it breaks position: sticky/fixed scrollport */
+    html {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: clip;
+      background-color: var(--bg-dark);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-pearl);
+      font-family: var(--font-sans);
+      width: 100%;
+      min-height: 100%;
+      overflow-x: clip;
+      position: relative;
+    }
+
+    /* Custom Luxury Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E293B;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-blue);
+    }
+
+    /* Utilities */
+    .font-serif { font-family: var(--font-serif); }
+    .font-editorial { font-family: var(--font-editorial); }
+    .tracking-widest-luxury { letter-spacing: 0.35em; }
+    .tracking-wide-luxury { letter-spacing: 0.2em; }
+    .glass-panel {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-subtle);
+    }
+    .glass-nav {
+      background: rgba(5, 8, 17, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    /* ==========================================================================
+       2. PRELOADER SCREEN
+       ========================================================================== */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-dark);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+    }
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: 0.35em;
+      color: var(--text-pearl);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .loader-subline {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+    .loader-progress-track {
+      width: 240px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .loader-progress-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #60A5FA, #F59E0B);
+      transition: width 0.15s ease-out;
+    }
+    .loader-percent {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-top: 14px;
+    }
+
+    /* ==========================================================================
+       3. NAVIGATION BAR & MOBILE DRAWER
+       ========================================================================== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .nav-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      letter-spacing: 0.28em;
+      font-weight: 700;
+      color: var(--text-pearl);
+      line-height: 1;
+    }
+    .brand-sub {
+      font-size: 0.55rem;
+      letter-spacing: 0.35em;
+      color: var(--text-dim);
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+    .nav-links-desktop {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    @media (max-width: 960px) {
+      .nav-links-desktop { display: none; }
+    }
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+      padding: 6px 0;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 1px;
+      background: var(--accent-blue);
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-link:hover {
+      color: var(--text-pearl);
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .btn-audio-toggle, .btn-cart-toggle, .btn-mobile-menu {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-pearl);
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition-smooth);
+    }
+    .btn-audio-toggle:hover, .btn-cart-toggle:hover, .btn-mobile-menu:hover {
+      border-color: var(--accent-blue);
+      background: rgba(96, 165, 250, 0.1);
+      transform: translateY(-1px);
+    }
+    .cart-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--accent-blue);
+      color: #050811;
+      font-size: 0.65rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 10px;
+    }
+    @media (max-width: 960px) {
+      .btn-mobile-menu { display: flex; }
+    }
+    .menu-bar {
+      width: 20px;
+      height: 1.5px;
+      background-color: var(--text-pearl);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .btn-mobile-menu.active .menu-bar:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+    .btn-mobile-menu.active .menu-bar:nth-child(2) {
+      opacity: 0;
+    }
+    .btn-mobile-menu.active .menu-bar:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(5, 8, 17, 0.96);
+      backdrop-filter: blur(24px);
+      z-index: 150;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 24px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+    }
+    .mobile-drawer.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .mobile-nav-links {
+      list-style: none;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .mobile-nav-link {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      letter-spacing: 0.25em;
+      color: var(--text-pearl);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+    .mobile-nav-link:hover {
+      color: var(--accent-blue);
+    }
+
+    /* ==========================================================================
+       4. HERO SECTION: BULLETPROOF PINNED VIEWPORT & SCROLL CANVAS
+       ========================================================================== */
+    .hero-scroll-container {
+      position: relative;
+      width: 100%;
+      height: 420vh; /* Controlled scrub distance */
+      background: var(--bg-dark);
+    }
+    
+    /* Pinned Stage: Supports dual sticky and JS-pinned fallback */
+    .hero-sticky-stage {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-dark);
+      z-index: 20;
+    }
+    
+    #heroCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 1;
+      pointer-events: none;
+      background-color: var(--bg-dark);
+    }
+
+    /* Subtle luxury edge vignette without harsh darkening */
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 60%, rgba(5, 8, 17, 0.45) 100%);
+    }
+
+    /* OVERLAY TEXT SYSTEM */
+    .hero-overlay-system {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(20px, 4vw, 48px);
+    }
+
+    /* Overlay Phase Panels */
+    .phase-panel {
+      position: absolute;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+      max-width: 540px;
+    }
+    .phase-panel.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Phase 1: Sleek Bottom-Center Capsule (Never clashes with bottle label) */
+    #phase1 {
+      bottom: clamp(24px, 5vh, 48px);
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      text-align: center;
+      width: 90%;
+      max-width: 760px;
+      z-index: 30;
+    }
+    #phase1.active {
+      transform: translateX(-50%) translateY(0);
+    }
+    .hero-title-glass-capsule {
+      background: rgba(5, 8, 17, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(96, 165, 250, 0.22);
+      border-radius: 20px;
+      padding: clamp(16px, 2.5vw, 24px) clamp(20px, 4vw, 36px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    }
+    .hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: 0.32em;
+      color: var(--text-pearl);
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+    .hero-subline {
+      font-family: var(--font-sans);
+      font-size: clamp(0.72rem, 1.1vw, 0.92rem);
+      letter-spacing: 0.35em;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      margin-top: 8px;
+      font-weight: 500;
+    }
+    .hero-badge {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 14px;
+      border: 1px solid var(--border-light);
+      background: rgba(96, 165, 250, 0.1);
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-pearl);
+      border-radius: 999px;
+    }
+
+    /* Phase 2: Top Notes (Left Side on Desktop, Bottom Card on Mobile) */
+    #phase2 {
+      top: 50%;
+      left: clamp(24px, 6vw, 96px);
+      transform: translateY(-50%) translateX(-25px);
+    }
+    #phase2.active {
+      transform: translateY(-50%) translateX(0);
+    }
+
+    /* Phase 3: Heart Notes (Right Side on Desktop, Bottom Card on Mobile) */
+    #phase3 {
+      top: 50%;
+      right: clamp(24px, 6vw, 96px);
+      transform: translateY(-50%) translateX(25px);
+      text-align: right;
+    }
+    #phase3.active {
+      transform: translateY(-50%) translateX(0);
+    }
+    #phase3 .note-badges {
+      justify-content: flex-end;
+    }
+
+    /* Phase 4: Base Notes (Left Side / Bottom on Desktop) */
+    #phase4 {
+      bottom: clamp(30px, 8vh, 80px);
+      left: clamp(24px, 6vw, 96px);
+      transform: translateY(25px);
+    }
+    #phase4.active {
+      transform: translateY(0);
+    }
+
+    /* Mobile Responsive Phase Overlay Styling */
+    @media (max-width: 768px) {
+      #phase1, #phase2, #phase3, #phase4 {
+        top: auto !important;
+        bottom: 20px !important;
+        left: 50% !important;
+        right: auto !important;
+        width: 92% !important;
+        max-width: 440px !important;
+        transform: translateX(-50%) translateY(15px) !important;
+        text-align: center !important;
+      }
+      #phase1.active, #phase2.active, #phase3.active, #phase4.active {
+        transform: translateX(-50%) translateY(0) !important;
+      }
+      #phase3 .note-phase-tag, #phase3 .note-badges {
+        justify-content: center !important;
+      }
+      #phase2 .note-phase-tag, #phase4 .note-phase-tag {
+        justify-content: center !important;
+      }
+      .note-badges {
+        justify-content: center !important;
+      }
+    }
+
+    /* Card styling for phases 2, 3, 4 */
+    .note-card-glass {
+      background: rgba(6, 11, 25, 0.78);
+      border: 1px solid rgba(96, 165, 250, 0.25);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: clamp(20px, 3.2vw, 32px);
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    .note-phase-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #phase3 .note-phase-tag {
+      justify-content: flex-end;
+    }
+    .note-phase-tag::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--accent-blue);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-blue);
+    }
+    .note-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+      letter-spacing: 0.15em;
+      color: var(--text-pearl);
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+    .note-desc {
+      font-size: clamp(0.8rem, 1vw, 0.92rem);
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .note-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .note-pill {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-pearl);
+    }
+    .note-pill.amber {
+      border-color: rgba(245, 158, 11, 0.3);
+      color: #FCD34D;
+      background: rgba(245, 158, 11, 0.08);
+    }
+
+    /* RIGHT VERTICAL SCROLL TRACKER */
+    .vertical-scroll-tracker {
+      position: fixed;
+      right: clamp(16px, 3vw, 40px);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 80;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .vertical-scroll-tracker.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .tracker-track {
+      width: 2px;
+      height: 160px;
+      background: rgba(255, 255, 255, 0.1);
+      position: relative;
+      border-radius: 2px;
+    }
+    .tracker-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0%;
+      background: linear-gradient(180deg, var(--accent-blue), var(--accent-amber));
+      border-radius: 2px;
+      box-shadow: 0 0 10px var(--accent-blue);
+      transition: height 0.08s ease-out;
+    }
+    .tracker-nodes {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .tracker-node {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-dim);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      transition: color 0.3s ease;
+    }
+    .tracker-node:hover, .tracker-node.active {
+      color: var(--text-pearl);
+    }
+    .tracker-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-dim);
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .tracker-node.active .tracker-dot {
+      background: var(--accent-blue);
+      transform: scale(1.5);
+      box-shadow: 0 0 12px var(--accent-blue);
+    }
+    .tracker-percent {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--accent-blue);
+      margin-top: 4px;
+    }
+
+    /* SCROLL PROMPT INDICATOR */
+    .scroll-prompt {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .scroll-arrow {
+      width: 14px;
+      height: 22px;
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      position: relative;
+    }
+    .scroll-arrow::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 5px;
+      background: var(--accent-blue);
+      border-radius: 2px;
+      animation: mouseWheel 2s infinite ease-in-out;
+    }
+    @keyframes mouseWheel {
+      0% { transform: translate(-50%, 0); opacity: 1; }
+      100% { transform: translate(-50%, 8px); opacity: 0; }
+    }
+
+    /* ==========================================================================
+       5. CONTENT SECTIONS (BELOW ANIMATION)
+       ========================================================================== */
+    .content-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 100px 24px;
+      position: relative;
+      z-index: 30;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .section-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.2vw, 3.4rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-pearl);
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* SECTION 1: THE OLFACTIVE CRAFTSMANSHIP (BENTO GRID) */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 1024px) {
+      .bento-grid { grid-template-columns: 1fr; }
+    }
+    .bento-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 36px 30px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+      backdrop-filter: blur(12px);
+    }
+    .bento-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-light);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(96, 165, 250, 0.12);
+    }
+    .bento-card-span-2 {
+      grid-column: span 2;
+    }
+    @media (max-width: 1024px) {
+      .bento-card-span-2 { grid-column: span 1; }
+    }
+    .card-tier-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      letter-spacing: 0.12em;
+      color: var(--text-pearl);
+      margin-bottom: 14px;
+    }
+    .card-text {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .metric-row {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 16px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .metric-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+    .metric-bar-track {
+      width: 100px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .metric-bar-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-glow));
+      border-radius: 2px;
+    }
+    .metric-bar-fill.amber {
+      background: linear-gradient(90deg, var(--accent-amber), #FCD34D);
+    }
+
+    /* SECTION 2: THE BOTTLE ARCHITECTURE */
+    .bottle-arch-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width: 960px) {
+      .bottle-arch-grid { grid-template-columns: 1fr; }
+    }
+    .bottle-visual-wrapper {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background: #060A16;
+      aspect-ratio: 16/10;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+    }
+    .bottle-visual-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bottle-visual-wrapper:hover .bottle-visual-img {
+      transform: scale(1.04);
+    }
+    .magnetic-cap-box {
+      margin-top: 24px;
+      padding: 24px;
+      background: rgba(14, 21, 38, 0.8);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .btn-snap-cap {
+      background: linear-gradient(135deg, #1E293B, #0F172A);
+      border: 1px solid var(--accent-blue);
+      color: var(--text-pearl);
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition-smooth);
+      white-space: nowrap;
+    }
+    .btn-snap-cap:hover {
+      background: var(--accent-blue);
+      color: #050811;
+      box-shadow: 0 0 25px rgba(96, 165, 250, 0.4);
+      transform: scale(1.02);
+    }
+    .arch-spec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .arch-spec-item {
+      display: flex;
+      gap: 20px;
+    }
+    .arch-spec-num {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--accent-blue);
+      font-weight: 700;
+      line-height: 1;
+    }
+    .arch-spec-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      letter-spacing: 0.1em;
+      color: var(--text-pearl);
+      margin-bottom: 6px;
+    }
+    .arch-spec-desc {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* SECTION 3: FRAGRANCE VARIATIONS SELECTOR */
+    .variations-selector-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: clamp(24px, 4vw, 48px);
+      backdrop-filter: blur(16px);
+    }
+    .variant-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .variant-tab-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-family: var(--font-serif);
+      font-size: 0.82rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .variant-tab-btn:hover {
+      color: var(--text-pearl);
+      border-color: rgba(96, 165, 250, 0.3);
+    }
+    .variant-tab-btn.active {
+      background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(30, 58, 138, 0.4));
+      border-color: var(--accent-blue);
+      color: var(--text-pearl);
+      box-shadow: 0 0 20px rgba(96, 165, 250, 0.25);
+    }
+    .variant-display-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .variant-display-grid { grid-template-columns: 1fr; }
+    }
+    .variant-info-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .variant-name {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      letter-spacing: 0.15em;
+      color: var(--text-pearl);
+    }
+    .variant-concentration-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      color: var(--accent-amber);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .variant-character-text {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+    .variant-radar-box {
+      background: rgba(5, 8, 17, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .radar-bar-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .radar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-pearl);
+    }
+    .radar-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+    .radar-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* SECTION 4: EDITORIAL / CAMPAIGN VISUALS (CAROUSEL) */
+    .carousel-container {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+      background: #050811;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 100%;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      position: relative;
+      aspect-ratio: 16/9;
+      max-height: 700px;
+      overflow: hidden;
+    }
+    @media (max-width: 768px) {
+      .carousel-slide { aspect-ratio: 4/3; }
+    }
+    .carousel-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .carousel-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: clamp(24px, 5vw, 60px);
+      background: linear-gradient(180deg, transparent 0%, rgba(5, 8, 17, 0.92) 80%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .carousel-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+    }
+    .carousel-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+      letter-spacing: 0.15em;
+      color: var(--text-pearl);
+    }
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(5, 8, 17, 0.75);
+      border: 1px solid var(--border-light);
+      color: var(--text-pearl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 5;
+      transition: var(--transition-smooth);
+    }
+    .carousel-nav-btn:hover {
+      background: var(--accent-blue);
+      color: #050811;
+      transform: translateY(-50%) scale(1.1);
+    }
+    .carousel-nav-prev { left: 24px; }
+    .carousel-nav-next { right: 24px; }
+    .carousel-indicators {
+      position: absolute;
+      bottom: 24px;
+      right: 32px;
+      display: flex;
+      gap: 10px;
+      z-index: 5;
+    }
+    .carousel-dot {
+      width: 32px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.25);
+      cursor: pointer;
+      transition: background 0.3s ease, width 0.3s ease;
+    }
+    .carousel-dot.active {
+      background: var(--accent-blue);
+      width: 48px;
+    }
+
+    /* SECTION 5: FOOTER & PURCHASE CALL-TO-ACTION */
+    .purchase-section-wrap {
+      background: linear-gradient(180deg, rgba(10, 15, 29, 0.8) 0%, #050811 100%);
+      border-radius: 32px;
+      border: 1px solid var(--border-subtle);
+      padding: clamp(32px, 6vw, 72px);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
+    }
+    .purchase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 960px) {
+      .purchase-grid { grid-template-columns: 1fr; }
+    }
+    .purchase-hero-image-box {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      position: relative;
+      aspect-ratio: 1/1;
+      background: #060913;
+    }
+    .purchase-hero-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .size-selector-row {
+      display: flex;
+      gap: 12px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    .size-btn {
+      flex: 1;
+      min-width: 90px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-pearl);
+      cursor: pointer;
+      text-align: center;
+      transition: var(--transition-smooth);
+    }
+    .size-btn:hover {
+      border-color: var(--border-light);
+    }
+    .size-btn.active {
+      border-color: var(--accent-blue);
+      background: rgba(96, 165, 250, 0.15);
+      box-shadow: 0 0 15px rgba(96, 165, 250, 0.25);
+    }
+    .size-btn-vol {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+    .size-btn-price {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .engrave-input-box {
+      margin: 24px 0;
+    }
+    .engrave-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-pearl);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .engrave-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(5, 8, 17, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      color: var(--text-pearl);
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    .engrave-input:focus {
+      border-color: var(--accent-blue);
+    }
+    .btn-add-to-bag {
+      width: 100%;
+      padding: 18px 36px;
+      background: linear-gradient(135deg, #F8FAFC, #E2E8F0);
+      color: #050811;
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: var(--transition-smooth);
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+    }
+    .btn-add-to-bag:hover {
+      background: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(96, 165, 250, 0.35);
+    }
+    .boutique-perks-list {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .perk-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .perk-item svg {
+      color: var(--accent-blue);
+      flex-shrink: 0;
+    }
+
+    /* SLIDE-OVER SHOPPING BAG DRAWER */
+    .cart-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s;
+    }
+    .cart-drawer-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 440px;
+      height: 100vh;
+      background: #0A0F1D;
+      border-left: 1px solid var(--border-subtle);
+      z-index: 205;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px 28px;
+    }
+    .cart-drawer-overlay.open .cart-drawer {
+      transform: translateX(0);
+    }
+    .cart-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .cart-drawer-title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      letter-spacing: 0.2em;
+    }
+    .btn-close-cart {
+      background: transparent;
+      border: none;
+      color: var(--text-pearl);
+      cursor: pointer;
+      padding: 6px;
+    }
+    .cart-drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 0;
+    }
+    .cart-item-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .cart-item-thumb {
+      width: 72px;
+      height: 72px;
+      border-radius: 10px;
+      background: #060A16;
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+    }
+    .cart-item-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .cart-item-info {
+      flex: 1;
+    }
+    .cart-item-title {
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 4px;
+    }
+    .cart-item-meta {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+    .cart-drawer-footer {
+      padding-top: 20px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .cart-subtotal-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+    }
+    .btn-checkout {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent-blue);
+      color: #050811;
+      font-family: var(--font-serif);
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .btn-checkout:hover {
+      background: #93C5FD;
+      box-shadow: 0 0 25px rgba(96, 165, 250, 0.4);
+    }
+
+    /* FOOTER SITEMAP */
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 80px 24px 40px;
+      background: #03050B;
+      position: relative;
+      z-index: 30;
+    }
+    .footer-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 48px;
+    }
+    @media (max-width: 860px) {
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+    .footer-col-title {
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-pearl);
+      margin-bottom: 20px;
+    }
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      transition: color 0.3s ease;
+    }
+    .footer-link:hover {
+      color: var(--accent-blue);
+    }
+    .footer-bottom {
+      max-width: 1360px;
+      margin: 60px auto 0;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.15em;
+    }
+
+    /* INTERACTIVE TOAST NOTIFICATION */
+    .toast-notification {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background: #0F172A;
+      border: 1px solid var(--accent-blue);
+      border-radius: 12px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(96, 165, 250, 0.2);
+      z-index: 300;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .toast-notification.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* REDUCED MOTION SAFETY */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       PRELOADER SCREEN WITH PROGRESS COUNTER
+       ======================================================================== -->
+  <div id="preloader">
+    <div class="loader-title">CHANEL</div>
+    <div class="loader-subline">BLEU DE CHANEL EXPERIENCE</div>
+    <div class="loader-progress-track">
+      <div class="loader-progress-bar" id="loaderProgressBar"></div>
+    </div>
+    <div class="loader-percent" id="loaderPercentText">INITIALIZING 0%</div>
+  </div>
+
+  <!-- ========================================================================
+       FIXED LUXURY HEADER & NAVIGATION
+       ======================================================================== -->
+  <header class="site-header glass-nav" id="siteHeader">
+    <div class="nav-container">
+      <a href="#hero" class="nav-brand" aria-label="CHANEL Home">
+        <span class="brand-title">CHANEL</span>
+        <span class="brand-sub">PARFUMEUR • PARIS</span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links-desktop">
+          <li><a href="#hero" class="nav-link">The Film</a></li>
+          <li><a href="#craftsmanship" class="nav-link">Pyramid Notes</a></li>
+          <li><a href="#architecture" class="nav-link">Bottle Architecture</a></li>
+          <li><a href="#variations" class="nav-link">Variations</a></li>
+          <li><a href="#editorial" class="nav-link">Campaign</a></li>
+          <li><a href="#purchase" class="nav-link">Boutique</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Audio Ambience Toggle -->
+        <button class="btn-audio-toggle" id="audioToggleBtn" title="Toggle Cinematic Ambience" aria-label="Toggle Sound">
+          <svg id="audioIconOff" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <svg id="audioIconOn" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+
+        <!-- Cart Bag Button -->
+        <button class="btn-cart-toggle" id="cartToggleBtn" title="Shopping Bag" aria-label="Shopping Bag">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cartBadgeCount">0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="btn-mobile-menu" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <ul class="mobile-nav-links">
+      <li><a href="#hero" class="mobile-nav-link" onclick="closeMobileMenu()">The Film</a></li>
+      <li><a href="#craftsmanship" class="mobile-nav-link" onclick="closeMobileMenu()">Pyramid Notes</a></li>
+      <li><a href="#architecture" class="mobile-nav-link" onclick="closeMobileMenu()">Bottle Architecture</a></li>
+      <li><a href="#variations" class="mobile-nav-link" onclick="closeMobileMenu()">Variations</a></li>
+      <li><a href="#editorial" class="mobile-nav-link" onclick="closeMobileMenu()">Campaign</a></li>
+      <li><a href="#purchase" class="mobile-nav-link" onclick="closeMobileMenu()">Boutique</a></li>
+    </ul>
+  </div>
+
+  <!-- ========================================================================
+       HERO SECTION: 420vh PINNED CANVAS SCROLL-DRIVEN ANIMATION
+       ======================================================================== -->
+  <section class="hero-scroll-container" id="hero">
+    <div class="hero-sticky-stage" id="heroStickyStage">
+      <!-- High-performance <canvas> Sequence Renderer -->
+      <canvas id="heroCanvas"></canvas>
+      
+      <!-- Subtle edge radial vignette -->
+      <div class="hero-vignette"></div>
+
+      <!-- OVERLAY TEXT SYSTEM (Synchronized across 4 phases) -->
+      <div class="hero-overlay-system">
+        
+        <!-- FASE 1: (0% - 22% Scroll) The Fresh Splash -->
+        <div class="phase-panel active" id="phase1">
+          <div class="hero-title-glass-capsule">
+            <h1 class="hero-headline">BLEU DE CHANEL</h1>
+            <p class="hero-subline">THE ESSENCE OF UNBOUND FREEDOM</p>
+            <div class="hero-badge">EAU DE PARFUM • ARCHITECTURAL ICON</div>
+          </div>
+        </div>
+
+        <!-- FASE 2: (25% - 52% Scroll) Top Notes: Invigorating Freshness -->
+        <div class="phase-panel" id="phase2">
+          <div class="note-card-glass">
+            <div class="note-phase-tag">Fase 02 // The Deconstruction</div>
+            <h2 class="note-title">Top Notes:<br>Invigorating Freshness</h2>
+            <p class="note-desc">
+              Crisp Calabrian bergamot, zesty lemon, and crushed mint leaves creating an instant electric burst that awakens the senses in zero gravity.
+            </p>
+            <div class="note-badges">
+              <span class="note-pill">Calabrian Bergamot</span>
+              <span class="note-pill">Zesty Lemon</span>
+              <span class="note-pill">Crushed Mint</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FASE 3: (55% - 78% Scroll) Heart Notes: Vibrant Aromatic Energy -->
+        <div class="phase-panel" id="phase3">
+          <div class="note-card-glass">
+            <div class="note-phase-tag">Fase 03 // Ingredient Exposure</div>
+            <h2 class="note-title">Heart Notes:<br>Vibrant Aromatic Energy</h2>
+            <p class="note-desc">
+              Spicy ginger, pink pepper, and delicate jasmine unfolding into sophisticated masculinity, swirling suspended in cinematic clarity.
+            </p>
+            <div class="note-badges">
+              <span class="note-pill">Spicy Ginger</span>
+              <span class="note-pill">Pink Pepper</span>
+              <span class="note-pill">Delicate Jasmine</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FASE 4: (80% - 98% Scroll) Base Notes: Deep Sensual Woods -->
+        <div class="phase-panel" id="phase4">
+          <div class="note-card-glass">
+            <div class="note-phase-tag">Fase 04 // The Settled Base</div>
+            <h2 class="note-title">Base Notes:<br>Deep Sensual Woods</h2>
+            <p class="note-desc">
+              New Caledonian sandalwood, dry cedar, and lingering amber-infused incense settling into a monolithic, magnetic finish.
+            </p>
+            <div class="note-badges">
+              <span class="note-pill amber">New Caledonian Sandalwood</span>
+              <span class="note-pill amber">Dry Cedar</span>
+              <span class="note-pill amber">Amber Incense</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll Down Prompt Indicator -->
+        <div class="scroll-prompt" id="scrollPrompt">
+          <div class="scroll-arrow"></div>
+          <span>Scroll to Deconstruct</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Right Vertical Scroll Tracker (Stages & Percentage) -->
+  <aside class="vertical-scroll-tracker" id="verticalTracker" aria-label="Hero Scroll Progress">
+    <div class="tracker-track">
+      <div class="tracker-fill" id="trackerFill"></div>
+    </div>
+    <div class="tracker-nodes">
+      <button class="tracker-node active" onclick="jumpToPhase(0.05)" title="Phase 1: Splash">
+        <span class="tracker-dot"></span> 01
+      </button>
+      <button class="tracker-node" onclick="jumpToPhase(0.35)" title="Phase 2: Top Notes">
+        <span class="tracker-dot"></span> 02
+      </button>
+      <button class="tracker-node" onclick="jumpToPhase(0.68)" title="Phase 3: Heart Notes">
+        <span class="tracker-dot"></span> 03
+      </button>
+      <button class="tracker-node" onclick="jumpToPhase(0.88)" title="Phase 4: Base Notes">
+        <span class="tracker-dot"></span> 04
+      </button>
+    </div>
+    <div class="tracker-percent" id="trackerPercentLabel">0%</div>
+  </aside>
+
+  <!-- ========================================================================
+       SECTION 1: THE OLFACTIVE CRAFTSMANSHIP (BENTO GRID)
+       ======================================================================== -->
+  <section class="content-container" id="craftsmanship">
+    <div class="section-header">
+      <span class="section-eyebrow">Fragrance Architecture</span>
+      <h2 class="section-title">The Olfactive Craftsmanship</h2>
+      <p class="section-subtitle">
+        An extraordinary architectural composition orchestrated in three seamless olfactory movements, balancing pristine citrus clarity with nocturnal woody depth.
+      </p>
+    </div>
+
+    <div class="bento-grid">
+      <!-- Card 1: Top Notes -->
+      <div class="bento-card">
+        <div>
+          <div class="card-tier-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            01 • The Opening Wave
+          </div>
+          <h3 class="card-title">Calabrian Citrus & Mint</h3>
+          <p class="card-text">
+            Hand-harvested bergamot from southern Italy cold-pressed to retain its sparkling volatility, paired with brisk field mint for an instant exhilarating awakening.
+          </p>
+        </div>
+        <div class="metric-row">
+          <div class="metric-item">
+            <span>Freshness Index</span>
+            <span style="color:var(--accent-blue);">98%</span>
+          </div>
+          <div class="metric-bar-track">
+            <div class="metric-bar-fill" style="width: 98%;"></div>
+          </div>
+          <div class="metric-item">
+            <span>Diffusion Window</span>
+            <span>0 – 45 min</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Heart Notes -->
+      <div class="bento-card">
+        <div>
+          <div class="card-tier-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24M14.83 14.83l4.24 4.24M14.83 9.17l4.24-4.24M4.93 19.07l4.24-4.24"/></svg>
+            02 • The Vibrant Core
+          </div>
+          <h3 class="card-title">Ginger & Pink Pepper</h3>
+          <p class="card-text">
+            A pulsing aromatic heartbeat. Jamaican ginger adds heat and modern electric tension, softened by delicate jasmine petals that bridge masculine strength with tailored grace.
+          </p>
+        </div>
+        <div class="metric-row">
+          <div class="metric-item">
+            <span>Projection Power</span>
+            <span style="color:var(--accent-glow);">90%</span>
+          </div>
+          <div class="metric-bar-track">
+            <div class="metric-bar-fill" style="width: 90%;"></div>
+          </div>
+          <div class="metric-item">
+            <span>Evolution Window</span>
+            <span>1 – 5 hours</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Base Notes -->
+      <div class="bento-card">
+        <div>
+          <div class="card-tier-tag" style="color:var(--accent-amber);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 22 22 22"/></svg>
+            03 • The Monolithic Foundation
+          </div>
+          <h3 class="card-title">Sandalwood & Amber</h3>
+          <p class="card-text">
+            Sustainably sourced New Caledonian sandalwood fractionated through fractional distillation, complemented by rich Texan cedar and warm amber-infused smoke.
+          </p>
+        </div>
+        <div class="metric-row">
+          <div class="metric-item">
+            <span>Longevity Aura</span>
+            <span style="color:var(--accent-amber);">14+ Hours</span>
+          </div>
+          <div class="metric-bar-track">
+            <div class="metric-bar-fill amber" style="width: 96%;"></div>
+          </div>
+          <div class="metric-item">
+            <span>Drydown Sillage</span>
+            <span>Intense & Velvety</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Wide Bento Feature (Macro Extraction) -->
+      <div class="bento-card bento-card-span-2">
+        <div>
+          <div class="card-tier-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            Artisanal Extraction
+          </div>
+          <h3 class="card-title">Cold-Fractionated Molecular Distillation</h3>
+          <p class="card-text">
+            Chanel’s in-house laboratory isolates only the most radiant facets of raw cedarwood and New Caledonian sandalwood, stripping away heavy terpene resin to maintain absolute aromatic clarity even after twelve hours on the skin.
+          </p>
+        </div>
+        <div style="display:flex; gap:20px; flex-wrap:wrap;">
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); padding:16px 20px; border-radius:12px; flex:1; min-width:180px;">
+            <div style="font-size:0.68rem; letter-spacing:0.2em; color:var(--accent-blue); text-transform:uppercase;">Origin Traceability</div>
+            <div style="font-size:1.1rem; font-family:var(--font-serif); margin-top:4px;">New Caledonia & Grasse</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); padding:16px 20px; border-radius:12px; flex:1; min-width:180px;">
+            <div style="font-size:0.68rem; letter-spacing:0.2em; color:var(--accent-amber); text-transform:uppercase;">Concentration Ratio</div>
+            <div style="font-size:1.1rem; font-family:var(--font-serif); margin-top:4px;">18% Pure Essence</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Olfactive Pyramid Summary -->
+      <div class="bento-card">
+        <div>
+          <div class="card-tier-tag">Signature Sillage</div>
+          <h3 class="card-title">The Kinetic Aura</h3>
+          <p class="card-text">
+            Engineered to evolve with your body heat, transitioning from a morning burst of energy to an evening signature of confident authority.
+          </p>
+        </div>
+        <div style="padding:16px; border-radius:14px; background:rgba(96,165,250,0.06); border:1px solid var(--border-light); text-align:center;">
+          <div style="font-size:0.75rem; letter-spacing:0.2em; color:var(--text-pearl); text-transform:uppercase;">Master Parfumeur</div>
+          <div style="font-family:var(--font-editorial); font-size:1.4rem; color:var(--accent-blue); margin-top:4px;">Jacques Polge & Olivier Polge</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 2: THE BOTTLE ARCHITECTURE (ENGINEERING & DESIGN)
+       ======================================================================== -->
+  <section class="content-container" id="architecture">
+    <div class="section-header">
+      <span class="section-eyebrow">Haute Parfumerie Engineering</span>
+      <h2 class="section-title">The Bottle Architecture</h2>
+      <p class="section-subtitle">
+        A monolith sculpted in dense midnight blue glass. Deceivingly simple, geometrically uncompromising, and engineered with precision magnetic mechanics.
+      </p>
+    </div>
+
+    <div class="bottle-arch-grid">
+      <div class="bottle-visual-wrapper">
+        <img src="editorial_bottle.jpg" alt="Bleu de Chanel Magnetic Cap and Monolithic Glass Architecture" class="bottle-visual-img" onerror="this.src='frame_000_delay-0.042s.jpg'">
+      </div>
+
+      <div class="arch-spec-list">
+        <div class="arch-spec-item">
+          <div class="arch-spec-num">01</div>
+          <div>
+            <h3 class="arch-spec-title">Dense Midnight Obsidian Glass</h3>
+            <p class="arch-spec-desc">
+              Thick-walled borosilicate glass tinted to a color so deep it appears black in shadow, yet radiates a luminous midnight ocean blue when pierced by light.
+            </p>
+          </div>
+        </div>
+
+        <div class="arch-spec-item">
+          <div class="arch-spec-num">02</div>
+          <div>
+            <h3 class="arch-spec-title">The Iconic Magnetic Closure</h3>
+            <p class="arch-spec-desc">
+              Four neodymium magnets oriented in precise polarity ensure the cap aligns itself perfectly with the bottle's square shoulders with an unmistakable, resonant acoustic click.
+            </p>
+          </div>
+        </div>
+
+        <div class="arch-spec-item">
+          <div class="arch-spec-num">03</div>
+          <div>
+            <h3 class="arch-spec-title">Laser Micro-Diffusion Atomizer</h3>
+            <p class="arch-spec-desc">
+              The internal pump releases exactly 0.05ml of micro-droplets in an ultra-fine conical mist, maximizing the surface area of olfactive diffusion without wet saturation.
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive Snap Cap Box with Web Audio API click -->
+        <div class="magnetic-cap-box">
+          <div>
+            <div style="font-size:0.75rem; letter-spacing:0.15em; font-weight:600; text-transform:uppercase;">Acoustic Experience</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Test the magnetic closure sound</div>
+          </div>
+          <button class="btn-snap-cap" id="btnSnapCap" onclick="triggerMagneticSnap()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            Click The Cap
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 3: THE FRAGRANCE VARIATIONS (INTERACTIVE SELECTOR)
+       ======================================================================== -->
+  <section class="content-container" id="variations">
+    <div class="section-header">
+      <span class="section-eyebrow">Tailored Concentrations</span>
+      <h2 class="section-title">The Fragrance Variations</h2>
+      <p class="section-subtitle">
+        Explore the three expressions of BLEU DE CHANEL. Select each concentration to inspect its unique olfactive intensity, profile radar, and character.
+      </p>
+    </div>
+
+    <div class="variations-selector-wrap">
+      <!-- Tabs Switcher -->
+      <div class="variant-tabs">
+        <button class="variant-tab-btn" onclick="selectVariant(0)">Eau de Toilette</button>
+        <button class="variant-tab-btn active" onclick="selectVariant(1)">Eau de Parfum</button>
+        <button class="variant-tab-btn" onclick="selectVariant(2)">Parfum</button>
+      </div>
+
+      <div class="variant-display-grid">
+        <!-- Variant Text Information -->
+        <div class="variant-info-card">
+          <div class="variant-concentration-tag" id="variantConcTag">18% CONCENTRATION • SIGNATURE BALANCE</div>
+          <h3 class="variant-name" id="variantName">Eau de Parfum</h3>
+          <p class="variant-character-text" id="variantDesc">
+            The ultimate signature of boundless masculinity. An exquisite equilibrium where radiant bergamot meets rich velvety amber and New Caledonian sandalwood. Versatile, charismatic, and irresistibly magnetic for both daytime meetings and evening allure.
+          </p>
+          <div style="display:flex; gap:16px; margin-top:12px;">
+            <a href="#purchase" class="btn-snap-cap" style="text-decoration:none;" onclick="applyVariantToPurchase(1)">
+              Select This Variant
+            </a>
+          </div>
+        </div>
+
+        <!-- Dynamic Profile Radar Bars -->
+        <div class="variant-radar-box">
+          <div style="font-family:var(--font-serif); font-size:0.85rem; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:8px;">
+            Olfactory Profile Metrics
+          </div>
+
+          <div class="radar-bar-row">
+            <div class="radar-label">
+              <span>Freshness & Zest</span>
+              <span id="metricFreshnessVal">85%</span>
+            </div>
+            <div class="radar-track">
+              <div class="radar-fill" id="metricFreshnessBar" style="width: 85%; background: linear-gradient(90deg, #60A5FA, #38BDF8);"></div>
+            </div>
+          </div>
+
+          <div class="radar-bar-row">
+            <div class="radar-label">
+              <span>Aromatic Warmth</span>
+              <span id="metricWarmthVal">80%</span>
+            </div>
+            <div class="radar-track">
+              <div class="radar-fill" id="metricWarmthBar" style="width: 80%; background: linear-gradient(90deg, #F59E0B, #FBBF24);"></div>
+            </div>
+          </div>
+
+          <div class="radar-bar-row">
+            <div class="radar-label">
+              <span>Woody Density</span>
+              <span id="metricWoodVal">88%</span>
+            </div>
+            <div class="radar-track">
+              <div class="radar-fill" id="metricWoodBar" style="width: 88%; background: linear-gradient(90deg, #3B82F6, #1D4ED8);"></div>
+            </div>
+          </div>
+
+          <div class="radar-bar-row">
+            <div class="radar-label">
+              <span>Longevity (Hours)</span>
+              <span id="metricLongVal">10 Hours</span>
+            </div>
+            <div class="radar-track">
+              <div class="radar-fill" id="metricLongBar" style="width: 82%; background: linear-gradient(90deg, #10B981, #34D399);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 4: EDITORIAL / CAMPAIGN VISUALS (CAROUSEL)
+       ======================================================================== -->
+  <section class="content-container" id="editorial">
+    <div class="section-header">
+      <span class="section-eyebrow">Cinematic Noir</span>
+      <h2 class="section-title">Editorial Campaign</h2>
+      <p class="section-subtitle">
+        Visual poetry set in the blue shadows of midnight. A study of light, texture, and uncompromising modern luxury.
+      </p>
+    </div>
+
+    <div class="carousel-container">
+      <div class="carousel-track" id="carouselTrack">
+        <!-- Slide 1: Night Nocturne -->
+        <div class="carousel-slide">
+          <img src="editorial_night.jpg" alt="Bleu de Chanel Nocturne on Wet Obsidian Slate" class="carousel-img" onerror="this.src='frame_000_delay-0.042s.jpg'">
+          <div class="carousel-caption">
+            <span class="carousel-tag">Act I // Midnight Nocturne</span>
+            <h3 class="carousel-title">The Bottle in Paris at 02:00 AM</h3>
+          </div>
+        </div>
+
+        <!-- Slide 2: Zero Gravity Notes -->
+        <div class="carousel-slide">
+          <img src="editorial_notes.jpg" alt="Bergamot and Cedar in Zero Gravity" class="carousel-img" onerror="this.src='frame_120_delay-0.042s.jpg'">
+          <div class="carousel-caption">
+            <span class="carousel-tag">Act II // Zero Gravity Dispersion</span>
+            <h3 class="carousel-title">Calabrian Bergamot, Crushed Mint & Cedar</h3>
+          </div>
+        </div>
+
+        <!-- Slide 3: Magnetic Monolith -->
+        <div class="carousel-slide">
+          <img src="editorial_bottle.jpg" alt="Magnetic Cap Detaching in High-Tech Studio" class="carousel-img" onerror="this.src='frame_239_delay-0.042s.jpg'">
+          <div class="carousel-caption">
+            <span class="carousel-tag">Act III // Architectural Precision</span>
+            <h3 class="carousel-title">The Precision Monolith & Magnetic Closure</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-nav-btn carousel-nav-prev" onclick="prevSlide()" aria-label="Previous Slide">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-nav-btn carousel-nav-next" onclick="nextSlide()" aria-label="Next Slide">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+        <div class="carousel-dot" onclick="goToSlide(1)"></div>
+        <div class="carousel-dot" onclick="goToSlide(2)"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 5: FOOTER & PURCHASE CALL-TO-ACTION
+       ======================================================================== -->
+  <section class="content-container" id="purchase">
+    <div class="purchase-section-wrap">
+      <div class="purchase-grid">
+        <!-- Hero Static Visual -->
+        <div class="purchase-hero-image-box">
+          <img id="purchaseHeroImg" src="editorial_night.jpg" alt="Bleu de Chanel Presentation" onerror="this.src='frame_000_delay-0.042s.jpg'">
+        </div>
+
+        <!-- Purchase Options -->
+        <div>
+          <span class="section-eyebrow">Official Chanel Parfumeur</span>
+          <h2 class="section-title" style="text-align:left; font-size:clamp(1.8rem, 3.2vw, 2.6rem);" id="purchaseTitle">
+            BLEU DE CHANEL
+          </h2>
+          <div style="font-size:0.85rem; letter-spacing:0.2em; color:var(--accent-blue); text-transform:uppercase; margin-bottom:12px;" id="purchaseSub">
+            Eau de Parfum Spray
+          </div>
+          <div style="font-family:var(--font-serif); font-size:1.8rem; color:var(--text-pearl); margin-bottom:24px;" id="purchasePrice">
+            $160.00 <span style="font-size:0.85rem; color:var(--text-muted); font-family:var(--font-sans);">(100 ml)</span>
+          </div>
+
+          <!-- Size Selector Pills -->
+          <div style="font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-pearl);">Select Volume</div>
+          <div class="size-selector-row">
+            <button class="size-btn" onclick="selectSize(50, 115, this)">
+              <div class="size-btn-vol">50 ml</div>
+              <div class="size-btn-price">$115.00</div>
+            </button>
+            <button class="size-btn active" onclick="selectSize(100, 160, this)">
+              <div class="size-btn-vol">100 ml</div>
+              <div class="size-btn-price">$160.00</div>
+            </button>
+            <button class="size-btn" onclick="selectSize(150, 210, this)">
+              <div class="size-btn-vol">150 ml</div>
+              <div class="size-btn-price">$210.00</div>
+            </button>
+          </div>
+
+          <!-- Complimentary Laser Engraving -->
+          <div class="engrave-input-box">
+            <label class="engrave-label" for="engraveInput">
+              <span>Personalized Laser Engraving</span>
+              <span style="color:var(--accent-blue);">Complimentary</span>
+            </label>
+            <input type="text" id="engraveInput" class="engrave-input" placeholder="e.g. D.V. or INITIALS (MAX 12 CHARS)" maxlength="12">
+          </div>
+
+          <!-- Add to Bag Button -->
+          <button class="btn-add-to-bag" id="btnAddToBag" onclick="addToBag()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Add to Bag
+          </button>
+
+          <!-- Boutique Perks -->
+          <div class="boutique-perks-list">
+            <div class="perk-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Complimentary express delivery and signature white-glove packaging.</span>
+            </div>
+            <div class="perk-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Two complimentary signature fragrance samples with every order.</span>
+            </div>
+            <div class="perk-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Official Chanel wax-sealed gift box with personalized card.</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SLIDE-OVER SHOPPING BAG DRAWER
+       ======================================================================== -->
+  <div class="cart-drawer-overlay" id="cartOverlay" onclick="closeCart(event)">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="cart-drawer-header">
+        <h3 class="cart-drawer-title">Shopping Bag</h3>
+        <button class="btn-close-cart" onclick="toggleCart()" aria-label="Close Shopping Bag">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="cart-drawer-body" id="cartDrawerBody">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="cart-drawer-footer">
+        <div class="cart-subtotal-row">
+          <span>Total</span>
+          <span id="cartDrawerTotal">$0.00</span>
+        </div>
+        <button class="btn-checkout" onclick="checkoutOrder()">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FOOTER SITEMAP & BOUTIQUE SERVICES
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div style="font-family:var(--font-serif); font-size:1.6rem; letter-spacing:0.3em; margin-bottom:12px;">CHANEL</div>
+        <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.7; max-width:320px;">
+          Bleu de Chanel is an homage to masculine freedom. Created for the man who defies conventions and claims his own destiny.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">The Fragrance</h4>
+        <ul class="footer-links-list">
+          <li><a href="#hero" class="footer-link">The Cinematic Film</a></li>
+          <li><a href="#craftsmanship" class="footer-link">Olfactory Pyramid</a></li>
+          <li><a href="#architecture" class="footer-link">Bottle Architecture</a></li>
+          <li><a href="#variations" class="footer-link">Concentrations</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Boutique Services</h4>
+        <ul class="footer-links-list">
+          <li><a href="#purchase" class="footer-link">Complimentary Engraving</a></li>
+          <li><a href="#purchase" class="footer-link">Boutique Appointments</a></li>
+          <li><a href="#purchase" class="footer-link">Gift Packaging</a></li>
+          <li><a href="#purchase" class="footer-link">Track Your Order</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Concierge & Legal</h4>
+        <ul class="footer-links-list">
+          <li><a href="#" class="footer-link">Client Care (+33 1 42 86 28 00)</a></li>
+          <li><a href="#" class="footer-link">Privacy Policy</a></li>
+          <li><a href="#" class="footer-link">Terms of Purchase</a></li>
+          <li><a href="#" class="footer-link">Sustainability Commitment</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 CHANEL — ALL RIGHTS RESERVED. HAUTE PARFUMERIE PARIS.</div>
+      <div>EN / US • CURRENCY: USD ($)</div>
+    </div>
+  </footer>
+
+  <!-- Interactive Feedback Toast -->
+  <div class="toast-notification" id="toastNotification">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <span id="toastMessage">Added to shopping bag.</span>
+  </div>
+
+  <!-- ========================================================================
+       CORE JAVASCRIPT: BULLETPROOF PINNED ENGINE, CANVAS, AUDIO, AND SCROLL
+       ======================================================================== -->
+  <script>
+    /* ==========================================================================
+       CONFIG & STATE
+       ========================================================================== */
+    const TOTAL_FRAMES = 240; // frame_000 to frame_239
+    const frameImages = new Array(TOTAL_FRAMES);
+    let loadedCount = 0;
+    let detectedPatternFn = null;
+    let currentFrameIndex = 0;
+    let targetScrollProgress = 0;
+    let currentScrollProgress = 0;
+    let isCanvasReady = false;
+
+    // DOM Elements
+    const canvas = document.getElementById('heroCanvas');
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const heroSection = document.getElementById('hero');
+    const heroStickyStage = document.getElementById('heroStickyStage');
+    const preloader = document.getElementById('preloader');
+    const loaderProgressBar = document.getElementById('loaderProgressBar');
+    const loaderPercentText = document.getElementById('loaderPercentText');
+    const verticalTracker = document.getElementById('verticalTracker');
+    const trackerFill = document.getElementById('trackerFill');
+    const trackerPercentLabel = document.getElementById('trackerPercentLabel');
+    const scrollPrompt = document.getElementById('scrollPrompt');
+    const trackerNodes = document.querySelectorAll('.tracker-node');
+
+    // Overlay Phase Elements
+    const phase1 = document.getElementById('phase1');
+    const phase2 = document.getElementById('phase2');
+    const phase3 = document.getElementById('phase3');
+    const phase4 = document.getElementById('phase4');
+
+    /* ==========================================================================
+       1. PATTERN AUTO-DETECTION & PRELOADING STRATEGY
+       ========================================================================== */
+    async function detectFramePattern() {
+      const candidateGenerators = [
+        (i) => `frame_${String(i).padStart(3, '0')}_delay-0.042s.jpg`,
+        (i) => `frame_${String(i).padStart(3, '0')}_delay-0.041s.jpg`,
+        (i) => `frame_${String(i).padStart(3, '0')}.jpg`,
+        (i) => `frame_${String(i).padStart(3, '0')}.webp`
+      ];
+
+      for (const gen of candidateGenerators) {
+        const testUrl = gen(0);
+        const exists = await new Promise((resolve) => {
+          const testImg = new Image();
+          testImg.onload = () => resolve(true);
+          testImg.onerror = () => resolve(false);
+          testImg.src = testUrl;
+        });
+        if (exists) {
+          detectedPatternFn = gen;
+          console.log('Detected frame sequence pattern:', testUrl);
+          return gen;
+        }
+      }
+      detectedPatternFn = candidateGenerators[0];
+      return candidateGenerators[0];
+    }
+
+    async function initializeImageSequence() {
+      const patternFn = await detectFramePattern();
+
+      // Step 1: Preload first batch immediately for instant rendering
+      const initialBatchSize = 15;
+      const initialPromises = [];
+
+      for (let i = 0; i < initialBatchSize; i++) {
+        initialPromises.push(loadSingleFrame(i, patternFn(i)));
+      }
+
+      await Promise.all(initialPromises);
+      isCanvasReady = true;
+      resizeCanvas();
+      drawCurrentFrame();
+
+      // Fade out preloader when initial frames are ready so user is never blocked
+      hidePreloader();
+
+      // Step 2: Progressively stream in remaining frames smoothly
+      loadRemainingFrames(initialBatchSize, patternFn);
+    }
+
+    function loadSingleFrame(index, url) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          frameImages[index] = img;
+          loadedCount++;
+          updateLoaderProgress();
+          resolve(img);
+        };
+        img.onerror = () => {
+          // If a frame fails, reuse previous frame to avoid visual holes
+          frameImages[index] = frameImages[Math.max(0, index - 1)];
+          loadedCount++;
+          updateLoaderProgress();
+          resolve(null);
+        };
+        img.src = url;
+      });
+    }
+
+    async function loadRemainingFrames(startIndex, patternFn) {
+      const CHUNK_SIZE = 12;
+      for (let i = startIndex; i < TOTAL_FRAMES; i += CHUNK_SIZE) {
+        const chunk = [];
+        for (let j = i; j < Math.min(i + CHUNK_SIZE, TOTAL_FRAMES); j++) {
+          chunk.push(loadSingleFrame(j, patternFn(j)));
+        }
+        await Promise.all(chunk);
+        await new Promise(r => setTimeout(r, 20));
+      }
+    }
+
+    function updateLoaderProgress() {
+      const percent = Math.min(100, Math.round((loadedCount / TOTAL_FRAMES) * 100));
+      if (loaderProgressBar) loaderProgressBar.style.width = percent + '%';
+      if (loaderPercentText) loaderPercentText.innerText = `INITIALIZING ${percent}%`;
+    }
+
+    function hidePreloader() {
+      if (preloader) {
+        preloader.classList.add('loaded');
+        setTimeout(() => {
+          preloader.style.display = 'none';
+        }, 800);
+      }
+    }
+
+    /* ==========================================================================
+       2. HIGH-DPI CANVAS RESIZING & FLICKER-FREE RENDERING
+       ========================================================================== */
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+
+      drawCurrentFrame();
+    }
+
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    function drawCurrentFrame() {
+      if (!isCanvasReady) return;
+
+      const img = frameImages[currentFrameIndex] || frameImages[0];
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+
+      // Fill canvas background before drawing each frame to prevent flicker
+      ctx.fillStyle = '#050811';
+      ctx.fillRect(0, 0, w, h);
+
+      if (!img || !img.complete) return;
+
+      let drawW, drawH, drawX, drawY;
+
+      if (w < 768) {
+        // Mobile layout: scale proportionally to emphasize the bottle
+        const scale = Math.max(w / img.width, (h * 0.75) / img.height);
+        drawW = img.width * scale;
+        drawH = img.height * scale;
+        drawX = (w - drawW) / 2;
+        drawY = (h - drawH) / 2 - 25; // Slightly upward to clear bottom text
+      } else {
+        // Desktop widescreen: cover cleanly so bottle and water splash are large and heroic
+        const scale = Math.max(w / img.width, h / img.height);
+        drawW = img.width * scale;
+        drawH = img.height * scale;
+        drawX = (w - drawW) / 2;
+        drawY = (h - drawH) / 2 - 20; // Position slightly upward so bottom title sits cleanly
+      }
+
+      ctx.drawImage(img, drawX, drawY, drawW, drawH);
+    }
+
+    /* ==========================================================================
+       3. BULLETPROOF PINNING CONTROLLER & DUAL-LAYER PROGRESS SYNC
+       ========================================================================== */
+    function updatePinAndProgress() {
+      if (!heroSection || !heroStickyStage) return;
+
+      const heroRect = heroSection.getBoundingClientRect();
+      const windowH = window.innerHeight;
+      const scrollDistance = heroSection.offsetHeight - windowH;
+      const currentY = -heroRect.top;
+
+      let progress = 0;
+
+      if (currentY <= 0) {
+        // Above hero or at very top
+        heroStickyStage.style.position = 'absolute';
+        heroStickyStage.style.top = '0px';
+        heroStickyStage.style.bottom = 'auto';
+        progress = 0;
+        verticalTracker.classList.remove('visible');
+      } else if (currentY >= scrollDistance) {
+        // Past hero bottom (unpinned, stays at bottom of hero)
+        heroStickyStage.style.position = 'absolute';
+        heroStickyStage.style.top = scrollDistance + 'px';
+        heroStickyStage.style.bottom = 'auto';
+        progress = 1;
+        verticalTracker.classList.remove('visible');
+      } else {
+        // INSIDE HERO: SOLID PINNED TO VIEWPORT (Never scrolls off into black space!)
+        heroStickyStage.style.position = 'fixed';
+        heroStickyStage.style.top = '0px';
+        heroStickyStage.style.bottom = 'auto';
+        progress = currentY / scrollDistance;
+        verticalTracker.classList.add('visible');
+      }
+
+      targetScrollProgress = Math.max(0, Math.min(1, progress));
+    }
+
+    window.addEventListener('scroll', updatePinAndProgress, { passive: true });
+
+    // Continuous Animation Frame loop for butter-smooth scrubbing
+    function renderLoop() {
+      // Always keep pinning locked in sync
+      updatePinAndProgress();
+
+      // Linear interpolation (Lerp) for ultra-fluid motion
+      currentScrollProgress += (targetScrollProgress - currentScrollProgress) * 0.14;
+
+      const newFrameIndex = Math.min(
+        TOTAL_FRAMES - 1,
+        Math.max(0, Math.floor(currentScrollProgress * (TOTAL_FRAMES - 1)))
+      );
+
+      if (newFrameIndex !== currentFrameIndex) {
+        currentFrameIndex = newFrameIndex;
+        drawCurrentFrame();
+      }
+
+      // Update Overlay Phases
+      updatePhases(currentScrollProgress);
+
+      // Update Vertical Scroll Tracker
+      if (trackerFill) trackerFill.style.height = (currentScrollProgress * 100) + '%';
+      if (trackerPercentLabel) trackerPercentLabel.innerText = Math.round(currentScrollProgress * 100) + '%';
+
+      requestAnimationFrame(renderLoop);
+    }
+    requestAnimationFrame(renderLoop);
+
+    function updatePhases(p) {
+      // Phase 1 (0% – 22%): The Fresh Splash
+      if (p >= 0 && p < 0.23) {
+        setActivePhase(phase1);
+        updateTrackerNode(0);
+        if (scrollPrompt) scrollPrompt.style.opacity = '0.8';
+      }
+      // Phase 2 (25% – 52%): Top Notes: Invigorating Freshness
+      else if (p >= 0.23 && p < 0.54) {
+        setActivePhase(phase2);
+        updateTrackerNode(1);
+        if (scrollPrompt) scrollPrompt.style.opacity = '0';
+      }
+      // Phase 3 (55% – 78%): Heart Notes: Vibrant Aromatic Energy
+      else if (p >= 0.54 && p < 0.79) {
+        setActivePhase(phase3);
+        updateTrackerNode(2);
+        if (scrollPrompt) scrollPrompt.style.opacity = '0';
+      }
+      // Phase 4 (80% – 98%): Base Notes: Deep Sensual Woods
+      else if (p >= 0.79 && p <= 1.0) {
+        setActivePhase(phase4);
+        updateTrackerNode(3);
+        if (scrollPrompt) scrollPrompt.style.opacity = '0';
+      } else {
+        setActivePhase(null);
+      }
+    }
+
+    function setActivePhase(activeEl) {
+      [phase1, phase2, phase3, phase4].forEach(panel => {
+        if (panel === activeEl) {
+          panel.classList.add('active');
+        } else {
+          panel.classList.remove('active');
+        }
+      });
+    }
+
+    function updateTrackerNode(index) {
+      trackerNodes.forEach((node, idx) => {
+        if (idx === index) {
+          node.classList.add('active');
+        } else {
+          node.classList.remove('active');
+        }
+      });
+    }
+
+    function jumpToPhase(progress) {
+      const scrollableDistance = heroSection.offsetHeight - window.innerHeight;
+      const targetY = heroSection.offsetTop + (scrollableDistance * progress);
+      if (lenis) {
+        lenis.scrollTo(targetY, { duration: 1.2 });
+      } else {
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      }
+    }
+
+    /* ==========================================================================
+       4. LENIS SMOOTH SCROLL INTEGRATION
+       ========================================================================== */
+    let lenis = null;
+    if (typeof Lenis !== 'undefined') {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+        infinite: false,
+      });
+
+      lenis.on('scroll', () => {
+        updatePinAndProgress();
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+
+    /* ==========================================================================
+       5. WEB AUDIO API: SYNTHESIZED LUXURY ACOUSTICS & AMBIENCE
+       ========================================================================== */
+    let audioCtx = null;
+    let isAmbiencePlaying = false;
+    let ambienceNodes = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // Realistic Magnetic Cap Snap Acoustic Click Synthesizer
+    function triggerMagneticSnap() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+
+        // 1. Initial metallic impact transient
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(1400, now);
+        osc.frequency.exponentialRampToValueAtTime(120, now + 0.04);
+        gain.gain.setValueAtTime(0.8, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.05);
+
+        // 2. Heavy magnetic body resonance (the solid "THUMP")
+        const subOsc = ctx.createOscillator();
+        const subGain = ctx.createGain();
+        subOsc.type = 'sine';
+        subOsc.frequency.setValueAtTime(220, now);
+        subOsc.frequency.exponentialRampToValueAtTime(45, now + 0.08);
+        subGain.gain.setValueAtTime(0.7, now);
+        subGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+        subOsc.connect(subGain);
+        subGain.connect(ctx.destination);
+        subOsc.start(now);
+        subOsc.stop(now + 0.09);
+
+        // Visual click feedback
+        const btn = document.getElementById('btnSnapCap');
+        if (btn) {
+          btn.style.transform = 'scale(0.95)';
+          setTimeout(() => { btn.style.transform = ''; }, 120);
+        }
+
+        showToast("Magnetic cap aligned with precision click.");
+      } catch (e) {
+        console.warn('Audio not allowed yet:', e);
+      }
+    }
+
+    // Ambient Luxury Soundscape Generator
+    function toggleAmbience() {
+      const ctx = getAudioContext();
+      const iconOff = document.getElementById('audioIconOff');
+      const iconOn = document.getElementById('audioIconOn');
+
+      if (isAmbiencePlaying) {
+        if (ambienceNodes) {
+          ambienceNodes.gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+          setTimeout(() => {
+            ambienceNodes.osc1.stop();
+            ambienceNodes.osc2.stop();
+            ambienceNodes = null;
+          }, 600);
+        }
+        isAmbiencePlaying = false;
+        iconOff.style.display = 'block';
+        iconOn.style.display = 'none';
+        showToast("Ambient soundscape paused.");
+      } else {
+        const now = ctx.currentTime;
+        const masterGain = ctx.createGain();
+        masterGain.gain.setValueAtTime(0.001, now);
+        masterGain.gain.exponentialRampToValueAtTime(0.2, now + 1.5);
+
+        const osc1 = ctx.createOscillator();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(55, now);
+
+        const osc2 = ctx.createOscillator();
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(82.4, now);
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(260, now);
+
+        osc1.connect(filter);
+        osc2.connect(filter);
+        filter.connect(masterGain);
+        masterGain.connect(ctx.destination);
+
+        osc1.start(now);
+        osc2.start(now);
+
+        ambienceNodes = { osc1, osc2, gain: masterGain };
+        isAmbiencePlaying = true;
+        iconOff.style.display = 'none';
+        iconOn.style.display = 'block';
+        showToast("Cinematic atmosphere enabled.");
+      }
+    }
+    document.getElementById('audioToggleBtn').addEventListener('click', toggleAmbience);
+
+    /* ==========================================================================
+       6. FRAGRANCE VARIATIONS DATA & INTERACTIVE SWITCHER
+       ========================================================================== */
+    const variantsData = [
+      {
+        name: "Eau de Toilette",
+        concTag: "12% CONCENTRATION • CRISP & CITRIC",
+        desc: "An invigorating burst of boundless energy. Pure Calabrian citrus and crisp pink pepper open the stage before drying down into fresh cedar. Ideal for warm daylight hours, sun-drenched escapes, and spontaneous adventures.",
+        freshness: 98,
+        warmth: 65,
+        wood: 72,
+        longText: "7 Hours",
+        longPct: 60,
+        price50: 100,
+        price100: 145,
+        price150: 185
+      },
+      {
+        name: "Eau de Parfum",
+        concTag: "18% CONCENTRATION • SIGNATURE BALANCE",
+        desc: "The ultimate signature of boundless masculinity. An exquisite equilibrium where radiant bergamot meets rich velvety amber and New Caledonian sandalwood. Versatile, charismatic, and irresistibly magnetic for both daytime meetings and evening allure.",
+        freshness: 85,
+        warmth: 80,
+        wood: 88,
+        longText: "10 Hours",
+        longPct: 82,
+        price50: 115,
+        price100: 160,
+        price150: 210
+      },
+      {
+        name: "Parfum",
+        concTag: "24% CONCENTRATION • NOCTURNAL DENSITY",
+        desc: "A pure and powerful nocturnal extract. The citrus top is condensed into a noble whisper, allowing the dark resinous heart of sandalwood, cedarwood, and rich tonka bean to command the aura with monolithic intensity. A presence that lingers until dawn.",
+        freshness: 70,
+        warmth: 95,
+        wood: 98,
+        longText: "14+ Hours",
+        longPct: 96,
+        price50: 135,
+        price100: 185,
+        price150: 245
+      }
+    ];
+
+    let currentVariantIdx = 1;
+
+    function selectVariant(index) {
+      currentVariantIdx = index;
+      const data = variantsData[index];
+
+      const tabs = document.querySelectorAll('.variant-tab-btn');
+      tabs.forEach((tab, i) => {
+        if (i === index) tab.classList.add('active');
+        else tab.classList.remove('active');
+      });
+
+      const vName = document.getElementById('variantName');
+      const vTag = document.getElementById('variantConcTag');
+      const vDesc = document.getElementById('variantDesc');
+
+      vName.innerText = data.name;
+      vTag.innerText = data.concTag;
+      vDesc.innerText = data.desc;
+
+      document.getElementById('metricFreshnessVal').innerText = data.freshness + '%';
+      document.getElementById('metricFreshnessBar').style.width = data.freshness + '%';
+
+      document.getElementById('metricWarmthVal').innerText = data.warmth + '%';
+      document.getElementById('metricWarmthBar').style.width = data.warmth + '%';
+
+      document.getElementById('metricWoodVal').innerText = data.wood + '%';
+      document.getElementById('metricWoodBar').style.width = data.wood + '%';
+
+      document.getElementById('metricLongVal').innerText = data.longText;
+      document.getElementById('metricLongBar').style.width = data.longPct + '%';
+    }
+
+    function applyVariantToPurchase(index) {
+      selectVariant(index);
+      const data = variantsData[index];
+      document.getElementById('purchaseSub').innerText = data.name + ' Spray';
+      updatePurchasePriceDisplay();
+    }
+
+    /* ==========================================================================
+       7. EDITORIAL CAROUSEL LOGIC
+       ========================================================================== */
+    let currentSlide = 0;
+    const totalSlides = 3;
+    const carouselTrack = document.getElementById('carouselTrack');
+    const dots = document.querySelectorAll('.carousel-dot');
+
+    function updateCarousel() {
+      if (carouselTrack) {
+        carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+      dots.forEach((dot, idx) => {
+        if (idx === currentSlide) dot.classList.add('active');
+        else dot.classList.remove('active');
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateCarousel();
+    }
+
+    let slideTimer = setInterval(nextSlide, 6000);
+    const carouselBox = document.querySelector('.carousel-container');
+    if (carouselBox) {
+      carouselBox.addEventListener('mouseenter', () => clearInterval(slideTimer));
+      carouselBox.addEventListener('mouseleave', () => {
+        clearInterval(slideTimer);
+        slideTimer = setInterval(nextSlide, 6000);
+      });
+    }
+
+    /* ==========================================================================
+       8. SHOPPING BAG & CHECKOUT SYSTEM
+       ========================================================================== */
+    let selectedVolume = 100;
+    let basePrice = 160;
+    const cartItems = [];
+
+    function selectSize(vol, price, btnEl) {
+      selectedVolume = vol;
+      basePrice = price;
+      document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      updatePurchasePriceDisplay();
+    }
+
+    function updatePurchasePriceDisplay() {
+      const priceEl = document.getElementById('purchasePrice');
+      priceEl.innerHTML = `$${basePrice}.00 <span style="font-size:0.85rem; color:var(--text-muted); font-family:var(--font-sans);">(${selectedVolume} ml)</span>`;
+    }
+
+    function addToBag() {
+      const engravingText = document.getElementById('engraveInput').value.trim();
+      const variant = variantsData[currentVariantIdx].name;
+
+      cartItems.push({
+        id: Date.now(),
+        title: `BLEU DE CHANEL`,
+        subtitle: `${variant} - ${selectedVolume} ml`,
+        price: basePrice,
+        engraving: engravingText || null
+      });
+
+      updateCartUI();
+      toggleCart(true);
+      showToast(`Added ${variant} (${selectedVolume}ml) to your shopping bag.`);
+
+      triggerMagneticSnap();
+    }
+
+    function updateCartUI() {
+      const badge = document.getElementById('cartBadgeCount');
+      const body = document.getElementById('cartDrawerBody');
+      const totalEl = document.getElementById('cartDrawerTotal');
+
+      badge.innerText = cartItems.length;
+
+      if (cartItems.length === 0) {
+        body.innerHTML = `
+          <div style="text-align:center; padding:60px 20px; color:var(--text-muted);">
+            <svg style="margin-bottom:16px; opacity:0.4;" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <p style="letter-spacing:0.15em; font-size:0.8rem; text-transform:uppercase;">Your shopping bag is empty.</p>
+          </div>
+        `;
+        totalEl.innerText = '$0.00';
+        return;
+      }
+
+      let total = 0;
+      let html = '';
+
+      cartItems.forEach((item, index) => {
+        total += item.price;
+        html += `
+          <div class="cart-item-row">
+            <div class="cart-item-thumb">
+              <img src="editorial_night.jpg" alt="${item.title}" onerror="this.src='frame_000_delay-0.042s.jpg'">
+            </div>
+            <div class="cart-item-info">
+              <div class="cart-item-title">${item.title}</div>
+              <div class="cart-item-meta">${item.subtitle}</div>
+              ${item.engraving ? `<div style="font-size:0.68rem; color:var(--accent-blue); margin-top:2px;">Engraving: "${item.engraving}"</div>` : ''}
+              <div style="font-size:0.8rem; font-weight:600; margin-top:4px;">$${item.price}.00</div>
+            </div>
+            <button onclick="removeCartItem(${index})" style="background:transparent; border:none; color:var(--text-dim); cursor:pointer; font-size:0.75rem;" title="Remove">✕</button>
+          </div>
+        `;
+      });
+
+      body.innerHTML = html;
+      totalEl.innerText = `$${total}.00`;
+    }
+
+    function removeCartItem(index) {
+      cartItems.splice(index, 1);
+      updateCartUI();
+    }
+
+    function toggleCart(forceOpen = false) {
+      const overlay = document.getElementById('cartOverlay');
+      if (forceOpen || !overlay.classList.contains('open')) {
+        overlay.classList.add('open');
+      } else {
+        overlay.classList.remove('open');
+      }
+    }
+
+    function closeCart(e) {
+      const overlay = document.getElementById('cartOverlay');
+      overlay.classList.remove('open');
+    }
+
+    document.getElementById('cartToggleBtn').addEventListener('click', () => toggleCart());
+
+    function checkoutOrder() {
+      if (cartItems.length === 0) {
+        showToast("Your shopping bag is currently empty.");
+        return;
+      }
+      showToast("Redirecting to Official Chanel Boutique Secure Checkout...");
+      setTimeout(() => {
+        alert("Thank you for choosing CHANEL. Your order has been initiated in the official concierge service.");
+        cartItems.length = 0;
+        updateCartUI();
+        toggleCart(false);
+      }, 1200);
+    }
+
+    /* ==========================================================================
+       9. RESPONSIVE MOBILE NAVIGATION
+       ========================================================================== */
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileDrawer.classList.contains('open');
+      if (isOpen) {
+        closeMobileMenu();
+      } else {
+        mobileDrawer.classList.add('open');
+        mobileMenuBtn.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    function closeMobileMenu() {
+      mobileDrawer.classList.remove('open');
+      mobileMenuBtn.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    /* ==========================================================================
+       10. TOAST NOTIFICATION UTILITY
+       ========================================================================== */
+    let toastTimeout = null;
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const msgEl = document.getElementById('toastMessage');
+      if (!toast || !msgEl) return;
+
+      msgEl.innerText = message;
+      toast.classList.add('show');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    /* ==========================================================================
+       11. BOOTSTRAP INITIALIZATION
+       ========================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      initializeImageSequence();
+      updateCartUI();
+      updatePinAndProgress();
+    });
+  </script>
+</body>
+</html>
